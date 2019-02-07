@@ -11,7 +11,7 @@ using terms from application "Messages"
 				set command to "curl -d 'message=" & theMessage & "' -X POST " & API_URL & "/download"
 				set output to do shell script command
 
-			else if (theMessage begins with "/help ") then
+			else if (theMessage begins with "/help") then
 				set output to "/dl track to download"
 
 			else
