@@ -1,6 +1,7 @@
 property PHONE : "put your phone here"
 property API_URL : "http://127.0.0.1:5000"
 property BUDDY_NAME: "put the buddy name associated with your phone"
+property COMMAND : "osascript {yourdir}/automate/applescripts/waitForEndOfScript.scpt "
 
 using terms from application "Messages"
 
@@ -8,6 +9,8 @@ using terms from application "Messages"
 
 		if (name of theBuddy is BUDDY_NAME) then
 			if (theMessage begins with "/dl ") then
+				-- url encode the message
+				set theMessage to do shell script "python -c 'import sys, urllib; print urllib.quote(sys.argv[1])' " & quoted form of theMessage
 				set command to "curl -d 'message=" & theMessage & "' -X POST " & API_URL & "/download"
 				set output to do shell script command
 
@@ -19,14 +22,18 @@ using terms from application "Messages"
 
 			end if
 
+			set pid to do shell script COMMAND & " &> /dev/null & echo $!"
+
 			tell application "Messages"
 				set targetService to 1st service whose service type = iMessage
 				set targetBuddy to buddy PHONE of targetService
 				send output to targetBuddy
 			end tell
+
+			do shell script "kill -0 " & pid
 		end if
 
-	return true
+		return true
 
 	end message received
 

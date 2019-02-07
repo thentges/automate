@@ -41,17 +41,17 @@ const reduce_possibilities = (possibilities , track_name) => {
             track.track_name = track_name
 
             if (exact_match.length === 5){
-                console.log(`[MATCHING] limit at 5 exact matches for ${track_name}`)
+                //console.log(`[MATCHING] limit at 5 exact matches for ${track_name}`)
                 return exact_match;
             }
 
         }
     )
     if (exact_match.length < 1){
-        console.log(`[MATCHING] no exact match ${track_name}`)
+        //console.log(`[MATCHING] no exact match ${track_name}`)
         return possibilities.slice(0, LIMIT)
     }
-    console.log(`[MATCHING] ${exact_match.length} exact matches for ${track_name}`)
+    //console.log(`[MATCHING] ${exact_match.length} exact matches for ${track_name}`)
     return exact_match
 }
 
@@ -64,7 +64,7 @@ const get_best_track = possibilities => {
                 cursor = track
         }
     )
-    console.log(`[BEST] ${cursor.tit_art} : ${cursor.bitrate}kbits/s`)
+    //console.log(`[BEST] ${cursor.tit_art} : ${cursor.bitrate}kbits/s`)
     return cursor
 }
 
