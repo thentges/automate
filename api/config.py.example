@@ -1,0 +1,4 @@
+import os
+
+API_DIR = os.path.dirname(__file__)
+DOWNLOADER_PATH = API_DIR + '/../downloader/index.js'
