@@ -6,9 +6,10 @@ const get_track = async track_name => {
     try {
         let track = await slider.get_track_formated(track_name)
         await system.download(track.link, track.track_name)
+        console.log(`downloaded: ${track.tit_art} [${track.bitrate}kbits/s]`)
     } catch (e) {
         if (e.message === 'no match')
-            console.log(e.message)
+            console.log('could not find this track...')
         else
             throw e
     }
