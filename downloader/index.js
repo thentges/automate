@@ -8,10 +8,8 @@ const get_track = async track_name => {
         await system.download(track.link, track.track_name)
         console.log(`downloaded: ${track.tit_art} [${track.bitrate}kbits/s]`)
     } catch (e) {
-        if (e.message === 'no match')
-            console.log('could not find this track...')
-        else
-            throw e
+        console.log('could not find this track...')
+        throw e
     }
 }
 

@@ -3,7 +3,8 @@ const fs = require('fs')
 const config = require('./config.json')
 
 const download = async (url, track_name) => {
-    const path = `${config.download_dir}${track_name}.mp3`
+    escaped_track_name = track_name.replace('/', '')
+    const path = `${config.download_dir}${escaped_track_name}.mp3`
     const writer = fs.createWriteStream(path)
     const resp = await axios({
         url,
