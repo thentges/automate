@@ -6,7 +6,6 @@ import subprocess
 @app.route('/download', methods=['POST'])
 def download_track():
     message = request.form['message']
-    # TODO transform message in track (stripe '/dl')
-    track = message
+    track = message[4:]
     r = subprocess.check_output(['node', config.DOWNLOADER_PATH, track])
     return r
